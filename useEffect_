@@ -1,0 +1,17 @@
+  useEffect(() => {
+const fetchHalls = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/public/get-all-halls");
+        const data = await response.json();  
+        if (data.success) {
+          dispatch(sethallData(data.halls));
+        } else {
+          dispatch(setError("Failed to load halls."));
+        }
+      } catch (error) {
+        dispatch(setError("Failed to load halls."));
+      }
+    };
+
+    fetchHalls();
+  }, [dispatch]);
